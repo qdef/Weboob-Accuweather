@@ -64,7 +64,7 @@ class WeatherPage(HTMLPage):
         
     @method
     class iter_forecast(ListElement):
-        item_xpath = '//div[@class="panel-body"]/div[@id="feed-tabs"]/ul/li[position()>1]'           
+        item_xpath = '//div[@class="panel-body"]/div[@id="feed-tabs"]/ul/li[position()>1]'
         
         class item(ItemElement):
             klass = Forecast
@@ -74,16 +74,18 @@ class WeatherPage(HTMLPage):
             
             def obj_low(self):
                 temp = CleanText('.//span[@class="small-temp"]/text()')(self)
-                unit = temp[-1]
-                temp=temp[1:-1]
-                temp = CleanDecimal(temp)(self)
+                if temp.endswith('C') or temp.endswith('F'):
+                    temp = temp[1:-2]
+                else:
+                    temp=temp[1:-1]
+                unit= CleanText('//span[@class="local-temp"]/text()')(self)
+                unit=unit[-1]
                 return Temperature(float(temp), unit)
     
             def obj_high(self):
-                unit= CleanText('//span[@class="local-temp"]/text()')(self)
-                unit= unit[-1]
                 temp = CleanText('.//span[@class="large-temp"]/text()')(self)
-                temp=temp[:-1]
-                temp = CleanDecimal(temp)(self)
+                temp=temp[:-1]                
+                unit= CleanText('//span[@class="local-temp"]/text()')(self)
+                unit=unit[-1]                
                 return Temperature(float(temp), unit)
 
