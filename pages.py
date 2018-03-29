@@ -51,13 +51,13 @@ class WeatherPage(HTMLPage):
         
         # Formatting weather data from the city of interest:
         obj_text = Format(' Real Feel: %s - %s - Wind speed: %s - Humidity: %s - Pressure: %s - UV index: %s - Cloud cover: %s.',
-                          CleanText('//div[@class="lt"]//tbody/tr[3]/td/text()'), #Real Feel
-                          CleanText('//div[@id="details"]//span[@class="cond"]/text()'), #Weather condition
-                          CleanText('//ul[@class="stats"]/li[2]/strong/text()'), #Wind speed
-                          CleanText('//ul[@class="stats"]/li[3]/strong/text()'), #Humidity
-                          CleanText('//ul[@class="stats"]/li[4]/strong/text()'), #Pressure
-                          CleanText('//ul[@class="stats"]/li[5]/strong/text()'), #UV index
-                          CleanText('//ul[@class="stats"]/li[6]/strong/text()')) #Cloud cover
+                        CleanText('//div[@class="lt"]//tbody/tr[3]/td/text()'), #Real Feel
+                        CleanText('//div[@id="details"]//span[@class="cond"]/text()'), #Weather condition
+                        CleanText('//ul[@class="stats"]/li[2]/strong/text()'), #Wind speed
+                        CleanText('//ul[@class="stats"]/li[3]/strong/text()'), #Humidity
+                        CleanText('//ul[@class="stats"]/li[4]/strong/text()'), #Pressure
+                        CleanText('//ul[@class="stats"]/li[5]/strong/text()'), #UV index
+                        CleanText('//ul[@class="stats"]/li[6]/strong/text()')) #Cloud cover
 
         def obj_temp(self):
             #Retrieving the temperature:
