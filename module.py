@@ -35,8 +35,12 @@ class AccuweatherModule(Module, CapWeather):
     BROWSER = AccuweatherBrowser
     
     # Method to search for a city pattern:
-    def iter_city_search(self, pattern):  
-        return self.browser.iter_city_search(pattern)    
+    def iter_city_search(self, pattern):
+        self.cities = list(self.browser.iter_city_search(pattern))
+        # In case the city search returns no results:
+        if len(self.cities) == 0:
+            raise CityNotFound('Sorry, no result matched your query.')
+        return self.cities
     
     # Method to retrieve the weather data for one specific city: 
     def get_current(self, id):  
@@ -45,6 +49,5 @@ class AccuweatherModule(Module, CapWeather):
     # Method to get the weather forecast of the 4 next days for one specific city:
     def iter_forecast(self, id):  
         return self.browser.iter_forecast(id)
-
-
+    
 
