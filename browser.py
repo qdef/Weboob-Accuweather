@@ -26,14 +26,14 @@ __all__ = ['AccuweatherBrowser']
 class AccuweatherBrowser(PagesBrowser):
     BASEURL = ''
     cities = URL('https://api.accuweather.com/locations/v1/cities/autocomplete\?q=(?P<pattern>.*)&apikey=d41dfd5e8a1748d0970cba6637647d96&language=en-us&get_param=value', SearchCitiesPage)
-    weather = URL('https://www.accuweather.com/en/fr/city/666/current-weather/(?P<city_id>.*)',  WeatherPage)
-    forecast = URL('https://www.accuweather.com/en/fr/city/666/daily-weather-forecast/(?P<city_id>.*)',  WeatherPage)
+    weather = URL('https://www.accuweather.com/en/fr/city/(?P<city_id1>.*)/current-weather/(?P<city_id2>.*)',  WeatherPage)
+    forecast = URL('https://www.accuweather.com/en/fr/city/(?P<city_id1>.*)/daily-weather-forecast/(?P<city_id2>.*)',  WeatherPage)
     
     def iter_city_search(self, pattern):
         return self.cities.go(pattern=pattern).iter_cities()
     
-    def get_current(self, _id):
-        return self.weather.go(city_id=_id).get_current()    
+    def get_current(self, id):
+        return self.weather.go(city_id1=id, city_id2=id).get_current()    
 
-    def iter_forecast(self, _id):
-        return self.forecast.go(city_id=_id).iter_forecast()
+    def iter_forecast(self, id):
+        return self.forecast.go(city_id1=id, city_id2=id).iter_forecast()
