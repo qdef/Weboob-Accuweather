@@ -38,7 +38,7 @@ class AccuweatherModule(Module, CapWeather):
     def iter_city_search(self, pattern):
         self.cities = list(self.browser.iter_city_search(pattern))
         # In case the city search returns no results:
-        if len(self.cities) == 0:
+        if not self.cities:
             raise CityNotFound('Sorry, no result matched your query.')
         return self.cities
     
