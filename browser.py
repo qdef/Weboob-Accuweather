@@ -29,11 +29,14 @@ class AccuweatherBrowser(PagesBrowser):
     weather = URL('https://www.accuweather.com/en/fr/city/(?P<city_id1>.*)/current-weather/(?P<city_id2>.*)',  WeatherPage)
     forecast = URL('https://www.accuweather.com/en/fr/city/(?P<city_id1>.*)/daily-weather-forecast/(?P<city_id2>.*)',  WeatherPage)
     
+    # Method to look for cities with a search pattern:
     def iter_city_search(self, pattern):
         return self.cities.go(pattern=pattern).iter_cities()
     
+    # Method to get weather data for one specific city:
     def get_current(self, id):
         return self.weather.go(city_id1=id, city_id2=id).get_current()    
 
+    # Method to get the weather forecast for the 4 next days:
     def iter_forecast(self, id):
         return self.forecast.go(city_id1=id, city_id2=id).iter_forecast()
