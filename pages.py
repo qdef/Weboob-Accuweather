@@ -46,10 +46,11 @@ class WeatherPage(HTMLPage):
     @method
     class get_current(ItemElement):
         klass = Current
+        # The current ID is retrieved from the City object:
         obj_id = Env('city_id2')
         obj_date = date.today()
         
-        # Formatting weather data from the city of interest:
+        # Formatting weather data for the city of interest:
         obj_text = Format(' Real Feel: %s - %s - Wind speed: %s - Humidity: %s - Pressure: %s - UV index: %s - Cloud cover: %s.',
                         CleanText('//div[@class="lt"]//tbody/tr[3]/td/text()'), #Real Feel
                         CleanText('//div[@id="details"]//span[@class="cond"]/text()'), #Weather condition

@@ -79,6 +79,7 @@ Type <b>'forecasts [city_ID]'</b> in your terminal (for example, 'forecasts 1') 
 
 
 If you have any questions on this module, feel free to contact me at:
+
 quentin.defenouillere@gmail.com
 
 
