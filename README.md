@@ -14,7 +14,7 @@ Please note that this module has been developed for the <b>1.4 version of Weboob
 
 4- If no weather backends are previously installed, wetboobs will offer you to install backends. If you did the previous steps correctly, the accuweather module should appear in the backends list.
 
-5- If other weather backends are already installed, you may use the <b>'backends add accuweather'</b> to add the accuweather module/ You can also use <b>'backends remove <backendname>'</b> to uninstall a backend.
+5- If other weather backends are already installed, you may use the <b>'backends add accuweather'</b> to add the accuweather module. You can also use <b>'backends remove [backendname]'</b> to uninstall a backend.
   
 <h2> How to use the accuweather module in weboob</h2>
 
